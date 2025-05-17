@@ -1,6 +1,6 @@
 {{ 'section-two-up.css' | asset_url | stylesheet_tag }}
 
-{% assign title = section.settings.field_title %}
+{% assign title = section.settings.title %}
 
 <section class="two-up">
   {% if title != blank %}
@@ -27,7 +27,7 @@
   "settings": [
     {
       "type": "text",
-      "id": "field_title",
+      "id": "title",
       "label": "Title"
     }
   ],

@@ -1,0 +1,96 @@
+{{ 'section-hero.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign banner = section.settings.banner
+  assign title = section.settings.title
+  assign content = section.settings.content
+  assign button_text = section.settings.button_text
+  assign url = section.settings.button_url
+  assign sub_text = section.settings.sub_text
+-%}
+{%- capture button_hero -%}
+  <a href={{url}} class="hero__button">
+    {{button_text}}
+  </a>
+{%- endcapture -%}
+
+<section class="container">
+  <div class="container__hero">
+    <div class="hero__banner">
+      {%- if banner != blank -%}
+        <img src="{{banner |  image_url }}" alt="loi" height="" width="" class="hero__image">
+      {%- endif -%}
+    </div>
+    <div class="hero__content">
+      {%- if title != blank -%}
+        <h1>{{ title }}</h1>
+        {%- if content != blank -%}
+          <p>{{ content }}</p>
+        {%- endif -%}
+        {%- if button_hero != blank -%}
+          {{ button_hero }}
+        {% endif %}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "middle"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Watch Now"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+   
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}
