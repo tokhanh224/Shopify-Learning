@@ -1,0 +1,59 @@
+{{ 'section-two-up.css' | asset_url | stylesheet_tag }}
+
+{% assign title = section.settings.field_title %}
+
+<section class="two-up">
+  {% if title != blank %}
+    <h2 class="two-up__title">Title</h2>
+  {% endif %}
+  <div class="two-up-image_picker">
+    {% for blocks in section.blocks %}
+      {% assign image_picker = blocks.settings.image_picker %}
+      {% assign image_url = blocks.settings.image_url %}
+
+      {% if image_picker != blank and image_url %}
+        <a href="{{image_url}}" class="two-up__image-url">
+          <img src="{{ image_picker | image_url }}" alt="Loi" width="50%" height="50%" class="two-up__image">
+        </a>
+      {% else %}
+        <img src="{{ image_picker | image_url }}" alt="Loi" width="50%" height="50%" class="two-up__image">
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Two Up",
+  "settings": [
+    {
+      "type": "text",
+      "id": "field_title",
+      "label": "Title"
+    }
+  ],
+  "max_blocks": 2,
+  "blocks": [
+    {
+      "type": "image_block",
+      "name": "Image Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_picker",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "image_url",
+          "label": "Image Url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two Up"
+    }
+  ]
+}
+{% endschema %}

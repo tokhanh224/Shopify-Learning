@@ -1,0 +1,35 @@
+.text-content {
+  text-align: center;
+  padding: 20px; 
+}
+
+.text-content p,
+.text-content h1,
+.text-content__description,
+.text-content__button {
+  margin: 8px 0; 
+}
+
+.text-content__title {
+  font-size: 76px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.text-content__description {
+  font-size: 16px;
+  color: #777;
+}
+
+.text-content__button {
+  align-content: center;
+  display: inline-block;
+  margin-top: 12px;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  height: 36px;
+  width: 71px;
+}
